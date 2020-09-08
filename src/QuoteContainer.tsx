@@ -16,7 +16,6 @@ class QuoteContainer extends React.Component {
   }
 
   generateQuote(): void {
-    console.log("Fuck")
     this.setState({
       quote: this.quoteMachine.generate()
     })
@@ -26,30 +25,40 @@ class QuoteContainer extends React.Component {
   render(): JSX.Element {
     const newQuoteArgs = {generator: this.generateQuote}
     return (
-      <div id="quote-box">
-        <QuoteBox {...this.state.quote} />
-        <NewQuote {...newQuoteArgs} />
-        <TweetQuote {...this.state.quote} />
+      <div className="card border-primary mx-auto bg-light" id="quote-box">
+        <div className="card-body">
+          <QuoteBox {...this.state.quote} />
+          <div className="list-inline">
+            <NewQuote {...newQuoteArgs} />
+            <TweetQuote {...this.state.quote} />
+          </div>
+        </div>
       </div>
     )
   }
 }
 
 class QuoteBox extends React.Component<Quote> {
-
-  constructor(props: Quote) {
-    super(props)
-  }
-
   render(): JSX.Element {
-    return (
-      <div id="quote">
-        <div id="text">{this.props.Text}</div>
-        <div id="author-context">
+    let footerContent : JSX.Element
+    if (this.props.Context) {
+      footerContent = (
+        <footer className="blockquote-footer" id="author-context">
+          <span id="author">{this.props.Author}</span>, <cite className="text-muted" id="context">{this.props.Context}</cite>
+        </footer>
+      )} else {
+      footerContent = (
+        <footer className="blockquote-footer" id="author-context">
           <span id="author">{this.props.Author}</span>
-          <span id="context">{this.props.Context}</span>
-        </div>
-      </div>
+        </footer>
+      )
+    }
+
+    return (
+      <blockquote className="blockquote" id="quote">
+        <p id="text">{this.props.Text}</p> 
+        {footerContent}
+      </blockquote>
     )
   }
 }
@@ -64,20 +73,20 @@ class NewQuote extends React.Component {
 
   render(): JSX.Element {
     return (
-      <a id="new-quote" className="btn btn-primary" onClick={this.generator}>New Quote</a>
+      <li className="list-inline-item">
+        <button id="new-quote" className="list-inline-item btn btn-primary" onClick={this.generator}>New Quote</button>
+      </li>
     )
   }
 }
 
 class TweetQuote extends React.Component<Quote> {
-  constructor(props: Quote) {
-    super(props)
-  }
-
   render(): JSX.Element {
     let text = encodeURIComponent(`"${this.props.Text}" - ${this.props.Author}`)
     return (
-      <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}>Tweet Quote</a>
+      <li className="list-inline-item">
+        <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}>Tweet Quote</a>
+      </li>
     )
   }
 }
