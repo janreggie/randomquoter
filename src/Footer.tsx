@@ -10,6 +10,10 @@ function Footer(): JSX.Element {
       <p>
         You may view the source code of this project over at <a href="https://github.com/janreggie/randomquoter">github.com/janreggie/randomquoter</a>.
       </p>
+      <p>
+        All quotes from this project have been sourced from <a href="https://en.wikiquote.org/wiki/Main_Page">Wikiquote</a>.
+        Content is available under <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>
+      </p>
     </footer>
   )
 }
