@@ -25,12 +25,14 @@ class QuoteContainer extends React.Component {
   render(): JSX.Element {
     const newQuoteArgs = {generator: this.generateQuote}
     return (
-      <div className="card border-primary mx-auto bg-light" id="quote-box">
-        <div className="card-body">
-          <QuoteBox {...this.state.quote} />
-          <div className="list-inline">
-            <NewQuote {...newQuoteArgs} />
-            <TweetQuote {...this.state.quote} />
+      <div id="quote-box-conatiner">
+        <div className="card border-primary mx-auto bg-light" id="quote-box">
+          <div className="card-body">
+            <QuoteBox {...this.state.quote} />
+            <div className="list-inline">
+              <NewQuote {...newQuoteArgs} />
+              <TweetQuote {...this.state.quote} />
+            </div>
           </div>
         </div>
       </div>
