@@ -1,6 +1,8 @@
 import React from 'react'
 import { Quote, DefaultQuotes } from './Quote'
 import { QuoteMachine } from './QuoteMachine'
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class QuoteContainer extends React.Component {
   quoteMachine: QuoteMachine
@@ -87,7 +89,7 @@ class TweetQuote extends React.Component<Quote> {
     let text = encodeURIComponent(`"${this.props.Text}" - ${this.props.Author}`)
     return (
       <li className="list-inline-item">
-        <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}>Tweet Quote</a>
+        <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}><FontAwesomeIcon icon={faTwitter} /> Tweet Quote</a>
       </li>
     )
   }
