@@ -1,35 +1,53 @@
 import React from 'react'
-import { Quote, DefaultQuotes } from './Quote'
-import { QuoteMachine } from './QuoteMachine'
+import { Quote, /*DefaultQuotes*/ } from './Quote'
+//import { QuoteMachine } from './QuoteMachine'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import { text } from '@fortawesome/fontawesome-svg-core';
 
 class QuoteContainer extends React.Component {
-  quoteMachine: QuoteMachine
+  //quoteMachine: QuoteMachine
   state: { quote: Quote }
 
   constructor(props: object) {
     super(props)
-    this.quoteMachine = new QuoteMachine(DefaultQuotes)
+    //this.quoteMachine = new QuoteMachine(DefaultQuotes)
     this.state = {
-      quote: this.quoteMachine.generate()
+      //quote: this.quoteMachine.generate()
+      quote: {
+        Text: "Press New Quote to Generate",
+        Author: "Press New Quote"
+      }
     }
     this.generateQuote = this.generateQuote.bind(this)
   }
 
+
   generateQuote(): void {
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          quote: {
+            Text: data.content,
+            Author: data.author
+          }
+        })
+      })
     this.setState({
-      quote: this.quoteMachine.generate()
+      quote: {
+        Text: "Fetching data...",
+        Author: "Fetching data..."
+      }
     })
-    console.log(this.state.quote)
   }
 
   render(): JSX.Element {
-    const newQuoteArgs = {generator: this.generateQuote}
+    const newQuoteArgs = { generator: this.generateQuote }
     return (
-      <div id="quote-box-conatiner">
+      <div id="quote-box-container" style={{ minHeight: "50vh" }}>
         <div className="card border-primary mx-auto bg-light" id="quote-box">
-          <div className="card-body">
+          <div className="card-body h-50" >
             <QuoteBox {...this.state.quote} />
             <div className="list-inline">
               <NewQuote {...newQuoteArgs} />
@@ -37,20 +55,21 @@ class QuoteContainer extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     )
   }
 }
 
 class QuoteBox extends React.Component<Quote> {
   render(): JSX.Element {
-    let footerContent : JSX.Element
+    let footerContent: JSX.Element
     if (this.props.Context) {
       footerContent = (
         <footer className="blockquote-footer" id="author-context">
           <span id="author">{this.props.Author}</span>, <cite className="text-muted" id="context">{this.props.Context}</cite>
         </footer>
-      )} else {
+      )
+    } else {
       footerContent = (
         <footer className="blockquote-footer" id="author-context">
           <span id="author">{this.props.Author}</span>
@@ -60,7 +79,7 @@ class QuoteBox extends React.Component<Quote> {
 
     return (
       <blockquote className="blockquote" id="quote">
-        <p id="text">{this.props.Text}</p> 
+        <p id="text">{this.props.Text}</p>
         {footerContent}
       </blockquote>
     )
