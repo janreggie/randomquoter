@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/randomquoter/static/css/main.db7f2977.chunk.css",
-    "main.js": "/randomquoter/static/js/main.703cab90.chunk.js",
-    "main.js.map": "/randomquoter/static/js/main.703cab90.chunk.js.map",
+    "main.css": "/randomquoter/static/css/main.a8b9729d.chunk.css",
+    "main.js": "/randomquoter/static/js/main.d0cbe249.chunk.js",
+    "main.js.map": "/randomquoter/static/js/main.d0cbe249.chunk.js.map",
     "runtime-main.js": "/randomquoter/static/js/runtime-main.c05be613.js",
     "runtime-main.js.map": "/randomquoter/static/js/runtime-main.c05be613.js.map",
-    "static/css/2.8aa5a7f8.chunk.css": "/randomquoter/static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.1cb9666a.chunk.js": "/randomquoter/static/js/2.1cb9666a.chunk.js",
-    "static/js/2.1cb9666a.chunk.js.map": "/randomquoter/static/js/2.1cb9666a.chunk.js.map",
+    "static/css/2.6414bb7b.chunk.css": "/randomquoter/static/css/2.6414bb7b.chunk.css",
+    "static/js/2.6cdcf4e1.chunk.js": "/randomquoter/static/js/2.6cdcf4e1.chunk.js",
+    "static/js/2.6cdcf4e1.chunk.js.map": "/randomquoter/static/js/2.6cdcf4e1.chunk.js.map",
     "index.html": "/randomquoter/index.html",
-    "precache-manifest.bb51de2b7ae42ddc53108aa77cb49baf.js": "/randomquoter/precache-manifest.bb51de2b7ae42ddc53108aa77cb49baf.js",
+    "precache-manifest.33c2c5a923363d172aaccb27453089e8.js": "/randomquoter/precache-manifest.33c2c5a923363d172aaccb27453089e8.js",
     "service-worker.js": "/randomquoter/service-worker.js",
-    "static/css/2.8aa5a7f8.chunk.css.map": "/randomquoter/static/css/2.8aa5a7f8.chunk.css.map",
-    "static/css/main.db7f2977.chunk.css.map": "/randomquoter/static/css/main.db7f2977.chunk.css.map",
-    "static/js/2.1cb9666a.chunk.js.LICENSE.txt": "/randomquoter/static/js/2.1cb9666a.chunk.js.LICENSE.txt"
+    "static/css/2.6414bb7b.chunk.css.map": "/randomquoter/static/css/2.6414bb7b.chunk.css.map",
+    "static/css/main.a8b9729d.chunk.css.map": "/randomquoter/static/css/main.a8b9729d.chunk.css.map",
+    "static/js/2.6cdcf4e1.chunk.js.LICENSE.txt": "/randomquoter/static/js/2.6cdcf4e1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c05be613.js",
-    "static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.1cb9666a.chunk.js",
-    "static/css/main.db7f2977.chunk.css",
-    "static/js/main.703cab90.chunk.js"
+    "static/css/2.6414bb7b.chunk.css",
+    "static/js/2.6cdcf4e1.chunk.js",
+    "static/css/main.a8b9729d.chunk.css",
+    "static/js/main.d0cbe249.chunk.js"
   ]
 }
