@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Header represents the header of randomquoter
+ */
 function Header(): JSX.Element {
   return (
     <div id="header" className="jumbotron text-white bg-primary">

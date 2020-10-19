@@ -1,28 +1,29 @@
 import React from 'react'
-import { Quote, /*DefaultQuotes*/ } from './Quote'
-//import { QuoteMachine } from './QuoteMachine'
+import { Quote } from './Quote'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { text } from '@fortawesome/fontawesome-svg-core';
 
+/**
+ * QuoteContainer is the React component used to display and generate quotes.
+ */
 class QuoteContainer extends React.Component {
-  //quoteMachine: QuoteMachine
   state: { quote: Quote }
 
   constructor(props: object) {
     super(props)
-    //this.quoteMachine = new QuoteMachine(DefaultQuotes)
     this.state = {
-      //quote: this.quoteMachine.generate()
       quote: {
-        Text: "Press New Quote to Generate",
+        Text: "Press New Quote to generate",
         Author: "Press New Quote"
       }
     }
     this.generateQuote = this.generateQuote.bind(this)
   }
 
-
+  /**
+   * generateQuote generates a random quote and puts it to state.
+   * It fetches from the quotable API.
+   */
   generateQuote(): void {
     fetch('https://api.quotable.io/random')
       .then(response => response.json())
@@ -42,6 +43,9 @@ class QuoteContainer extends React.Component {
     })
   }
 
+  /**
+   * render renders the QuoteContainer to the foreground.
+   */
   render(): JSX.Element {
     const newQuoteArgs = { generator: this.generateQuote }
     return (
@@ -60,6 +64,9 @@ class QuoteContainer extends React.Component {
   }
 }
 
+/**
+ * QuoteBox displays the Quote object, its author, and a context if there is one.
+ */
 class QuoteBox extends React.Component<Quote> {
   render(): JSX.Element {
     let footerContent: JSX.Element
@@ -86,6 +93,9 @@ class QuoteBox extends React.Component<Quote> {
   }
 }
 
+/**
+ * NewQuote generates a new quote from a `generator` procedure
+ */
 class NewQuote extends React.Component {
   generator: () => {}
 
@@ -103,6 +113,9 @@ class NewQuote extends React.Component {
   }
 }
 
+/**
+ * TweetQuote creates a link that allows the current tweet to be shared on Twitter
+ */
 class TweetQuote extends React.Component<Quote> {
   render(): JSX.Element {
     let text = encodeURIComponent(`"${this.props.Text}" - ${this.props.Author}`)

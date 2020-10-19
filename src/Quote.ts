@@ -1,15 +1,22 @@
-// Quote is an interface that has an Author and a Text, but may have an optional Context.
-// The Text is the text of the quote.
-// The Author is the person who said the Quote.
-// The Context contains details where the Quote may be from;
-// for example, as an excerpt from a book.
+/**
+ * Quote is an interface that has an Author and a Text, but may have an optional Context.
+ * @summary Represents a quote
+ * @interface
+ * 
+ * @property {string} Text - text of the quote
+ * @property {string} Author - person or entity who said the quote
+ * @property {string} [Context] - context of the quote, for exemple, as an excerpt from a book
+ */
 export interface Quote {
   readonly Text: string;
   readonly Author: string;
   readonly Context?: string;
 }
 
-// DefaultQuotes is a default array of Quotes
+/**
+ * DefaultQuotes is a default array of Quote objects.
+ * Used with QuoteMachine.
+ */
 export const DefaultQuotes: Array<Quote> = [
   {
     Text: `Mona Lisa, Mona Lisa, men have named you
