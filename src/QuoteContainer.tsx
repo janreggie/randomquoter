@@ -25,7 +25,7 @@ class QuoteContainer extends React.Component {
    * generateQuote generates a random quote and puts it to state.
    * It fetches from the quotable API.
    */
-  generateQuote(): void {
+  generateQuote() {
     fetch('https://api.quotable.io/random')
       .then(response => response.json())
       .then(data => {
@@ -48,14 +48,13 @@ class QuoteContainer extends React.Component {
    * render renders the QuoteContainer to the foreground.
    */
   render(): JSX.Element {
-    const newQuoteArgs = { generator: this.generateQuote }
     return (
       <div id="quote-box-container" style={{ minHeight: "50vh" }}>
         <div className="card border-primary mx-auto bg-light" id="quote-box">
           <div className="card-body h-50" >
             <QuoteBox {...this.state.quote} />
             <div className="list-inline">
-              <NewQuote {...newQuoteArgs} />
+              <NewQuote generator={this.generateQuote} />
               <TweetQuote {...this.state.quote} />
             </div>
           </div>
@@ -97,35 +96,23 @@ class QuoteBox extends React.Component<Quote> {
 /**
  * NewQuote generates a new quote from a `generator` procedure
  */
-class NewQuote extends React.Component {
-  generator: () => {}
-
-  constructor(props: { generator: () => {} }) {
-    super(props)
-    this.generator = props.generator
-  }
-
-  render(): JSX.Element {
-    return (
-      <li className="list-inline-item">
-        <button id="new-quote" className="list-inline-item btn btn-primary" onClick={this.generator}>New Quote</button>
-      </li>
-    )
-  }
-}
+const NewQuote = ({ generator } : NewQuoteProps) => (
+  <li className="list-inline-item">
+    <button id="new-quote" className="list-inline-item btn btn-primary" onClick={generator}>New Quote</button>
+  </li>
+)
+type NewQuoteProps = { generator: () => void }
 
 /**
  * TweetQuote creates a link that allows the current tweet to be shared on Twitter
  */
-class TweetQuote extends React.Component<Quote> {
-  render(): JSX.Element {
-    let text = encodeURIComponent(`"${this.props.Text}" - ${this.props.Author}`)
-    return (
-      <li className="list-inline-item">
-        <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}><FontAwesomeIcon icon={faTwitter} /> Tweet Quote</a>
-      </li>
-    )
-  }
+const TweetQuote = (quote: Quote) => {
+  const text = encodeURIComponent(`"${quote.Text}" - ${quote.Author}`)
+  return (
+    <li className="list-inline-item">
+      <a id="tweet-quote" className="btn btn-primary" href={`https://twitter.com/intent/tweet?text=${text}`}><FontAwesomeIcon icon={faTwitter} /> Tweet Quote</a>
+    </li>
+  )
 }
 
 export default QuoteContainer
