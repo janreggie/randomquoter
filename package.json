@@ -3,6 +3,7 @@
   "homepage": "https://janreggie.github.io/randomquoter/",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -17,11 +18,10 @@
     "bootstrap": "^4.5.3",
     "core-js": "3",
     "gh-pages": "^3.1.0",
-    "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
-    "scriptjs": "^2.5.9",
+    "sass": "^1.37.5",
     "typescript": "^4.0.3",
     "typescript-tslint-plugin": "^0.5.5"
   },

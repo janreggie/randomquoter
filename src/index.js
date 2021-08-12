@@ -6,10 +6,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// Include freeCodeCamp testing suite
-const $script = require('scriptjs')
-$script.get('https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js', () => {});
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

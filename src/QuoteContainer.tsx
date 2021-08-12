@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  * QuoteContainer is the React component used to display and generate quotes.
  */
 class QuoteContainer extends React.Component {
+
   state: { quote: Quote }
 
   constructor(props: object) {
