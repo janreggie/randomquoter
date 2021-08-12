@@ -65,33 +65,16 @@ class QuoteContainer extends React.Component {
 }
 
 /**
- * QuoteBox displays the Quote object, its author, and a context if there is one.
+ * QuoteBox displays a quote.
  */
-class QuoteBox extends React.Component<Quote> {
-  render(): JSX.Element {
-    let footerContent: JSX.Element
-    if (this.props.Context) {
-      footerContent = (
-        <footer className="blockquote-footer" id="author-context">
-          <span id="author">{this.props.Author}</span>, <cite className="text-muted" id="context">{this.props.Context}</cite>
-        </footer>
-      )
-    } else {
-      footerContent = (
-        <footer className="blockquote-footer" id="author-context">
-          <span id="author">{this.props.Author}</span>
-        </footer>
-      )
-    }
-
-    return (
-      <blockquote className="blockquote" id="quote">
-        <p id="text">{this.props.Text}</p>
-        {footerContent}
-      </blockquote>
-    )
-  }
-}
+const QuoteBox = (quote: Quote) => (
+  <blockquote className="blockquote" id="quote">
+    <p id="text">{quote.Text}</p>
+    <footer className="blockquote-footer" id="author-context">
+      <span id="author">{quote.Author}</span>
+    </footer>
+  </blockquote>
+)
 
 /**
  * NewQuote generates a new quote from a `generator` procedure
