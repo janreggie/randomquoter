@@ -52,10 +52,10 @@ class QuoteContainer extends React.Component {
       <div id="quote-box-container" style={{ minHeight: "50vh" }}>
         <div className="card border-primary mx-auto bg-light" id="quote-box">
           <div className="card-body h-50" >
-            <QuoteBox {...this.state.quote} />
+            <QuoteBox quote={this.state.quote} />
             <div className="list-inline">
               <NewQuote generator={this.generateQuote} />
-              <TweetQuote {...this.state.quote} />
+              <TweetQuote quote={this.state.quote} />
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ class QuoteContainer extends React.Component {
 /**
  * QuoteBox displays a quote.
  */
-const QuoteBox = (quote: Quote) => (
+const QuoteBox = ({ quote } : { quote : Quote }) => (
   <blockquote className="blockquote" id="quote">
     <p id="text">{quote.Text}</p>
     <footer className="blockquote-footer" id="author-context">
@@ -79,17 +79,16 @@ const QuoteBox = (quote: Quote) => (
 /**
  * NewQuote generates a new quote from a `generator` procedure
  */
-const NewQuote = ({ generator } : NewQuoteProps) => (
+const NewQuote = ({ generator } : { generator: () => void }) => (
   <li className="list-inline-item">
     <button id="new-quote" className="list-inline-item btn btn-primary" onClick={generator}>New Quote</button>
   </li>
 )
-type NewQuoteProps = { generator: () => void }
 
 /**
  * TweetQuote creates a link that allows the current tweet to be shared on Twitter
  */
-const TweetQuote = (quote: Quote) => {
+const TweetQuote = ({ quote } : { quote : Quote }) => {
   const text = encodeURIComponent(`"${quote.Text}" - ${quote.Author}`)
   return (
     <li className="list-inline-item">
