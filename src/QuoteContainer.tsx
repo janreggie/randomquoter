@@ -20,6 +20,7 @@ const QuoteContainer = () => {
       Author: "Fetching data..."
     })
 
+    // See https://github.com/lukePeavey/quotable for response format.
     type Response = {
       content: string,
       author: string
@@ -42,7 +43,7 @@ const QuoteContainer = () => {
   }
 
   return (
-    <div id="quote-box-container" style={{ minHeight: "50vh" }}>
+    <div id="quote-box-container" style={{ minHeight: "50vh" }}>  {/* container needed to ensure card doesn't occupy entire height */}
       <div className="card border-primary mx-auto bg-light" id="quote-box">
         <div className="card-body h-50" >
           <QuoteBox quote={quote} />
