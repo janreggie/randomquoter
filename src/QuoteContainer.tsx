@@ -36,6 +36,14 @@ class QuoteContainer extends React.Component {
           }
         })
       })
+      .catch(_ => {
+        this.setState({
+          quote: {
+            Text: "Could not fetch quote. Try again.",
+            Author: "Press New Quote"
+          }
+        })
+      })
     this.setState({
       quote: {
         Text: "Fetching data...",
