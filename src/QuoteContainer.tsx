@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Quote } from './Quote'
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,70 +6,54 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /**
  * QuoteContainer is the React component used to display and generate quotes.
  */
-class QuoteContainer extends React.Component {
+const QuoteContainer = () => {
 
-  state: { quote: Quote }
+  const [quote, setQuote] = useState<Quote>({
+    Text: "Press New Quote to generate",
+    Author: "Press New Quote"
+  })
 
-  constructor(props: object) {
-    super(props)
-    this.state = {
-      quote: {
-        Text: "Press New Quote to generate",
-        Author: "Press New Quote"
-      }
-    }
-    this.generateQuote = this.generateQuote.bind(this)
-  }
+  const generateQuote = async () => {
 
-  /**
-   * generateQuote generates a random quote and puts it to state.
-   * It fetches from the quotable API.
-   */
-  generateQuote() {
-    fetch('https://api.quotable.io/random')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          quote: {
-            Text: data.content,
-            Author: data.author
-          }
-        })
-      })
-      .catch(_ => {
-        this.setState({
-          quote: {
-            Text: "Could not fetch quote. Try again.",
-            Author: "Press New Quote"
-          }
-        })
-      })
-    this.setState({
-      quote: {
-        Text: "Fetching data...",
-        Author: "Fetching data..."
-      }
+    setQuote({
+      Text: "Fetching data...",
+      Author: "Fetching data..."
     })
+
+    type Response = {
+      content: string,
+      author: string
+    }
+
+    try {
+      const response : Response = await fetch('https://api.quotable.io/random').then(response => response.json())
+      setQuote({
+        Text: response.content,
+        Author: response.author
+      })
+
+    } catch {
+      setQuote({
+        Text: "Could not fetch quote. Try again.",
+        Author: "Press New Quote"
+      })
+    }
+
   }
 
-  /**
-   * render renders the QuoteContainer to the foreground.
-   */
-  render(): JSX.Element {
-    return (
-      <div id="quote-box-container" style={{ minHeight: "50vh" }}>
-        <div className="card border-primary mx-auto bg-light" id="quote-box">
-          <div className="card-body h-50" >
-            <QuoteBox quote={this.state.quote} />
-            <div className="list-inline">
-              <NewQuote generator={this.generateQuote} />
-              <TweetQuote quote={this.state.quote} />
-            </div>
+  return (
+    <div id="quote-box-container" style={{ minHeight: "50vh" }}>
+      <div className="card border-primary mx-auto bg-light" id="quote-box">
+        <div className="card-body h-50" >
+          <QuoteBox quote={quote} />
+          <div className="list-inline">
+            <NewQuote generator={generateQuote} />
+            <TweetQuote quote={quote} />
           </div>
         </div>
-      </div >
-    )
-  }
+      </div>
+    </div >
+  )
 }
 
 /**
